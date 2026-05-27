@@ -1,0 +1,246 @@
+@import "tailwindcss";
+
+/* ══════════════════════════════════════════════
+   EISCAFÉ TEATRO — DESIGN SYSTEM
+   La Dolce Vita meets Modern Web Design
+   ══════════════════════════════════════════════ */
+
+@theme {
+  /* Brand Colors */
+  --color-violet:     #7B3FA0;
+  --color-lavender:   #C4A8D8;
+  --color-lilac:      #E8D5F0;
+  --color-plum:       #4A1A6B;
+  --color-cream:      #FBF8FE;
+  --color-cream-dark: #F0E8F5;
+  --color-beige:      #F5E6C8;
+  --color-beige-dark: #EDD8A0;
+  --color-charcoal:   #2D2D2D;
+  --color-charcoal-light: #5A5A6B;
+  --color-white:      #FFFFFF;
+
+  /* Brand Fonts */
+  --font-playfair: var(--font-playfair-display), 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-lato:     var(--font-lato-sans), Lato, 'Helvetica Neue', Arial, sans-serif;
+  --font-caveat:   var(--font-caveat-hw), Caveat, 'Dancing Script', cursive;
+
+  /* Easing */
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ── Base ──────────────────────────────────────── */
+:root {
+  scroll-behavior: smooth;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #FBF8FE;
+  color: #2D2D2D;
+  font-family: var(--font-lato);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ── Accessibility ─────────────────────────────── */
+:focus-visible {
+  outline: 3px solid #7B3FA0;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 1rem;
+  z-index: 9999;
+  padding: 0.5rem 1.25rem;
+  background: #4A1A6B;
+  color: white;
+  font-weight: 600;
+  border-radius: 0 0.5rem 0.5rem 0;
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+.skip-link:focus {
+  left: 0;
+}
+
+/* ── Reduced Motion ────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Scrollbar ─────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #FBF8FE; }
+::-webkit-scrollbar-thumb { background: #C4A8D8; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #7B3FA0; }
+
+/* ── Typography Helpers ────────────────────────── */
+.font-playfair { font-family: var(--font-playfair); }
+.font-lato     { font-family: var(--font-lato); }
+.font-caveat   { font-family: var(--font-caveat); }
+
+/* ── Grain Texture ─────────────────────────────── */
+.texture-grain {
+  position: relative;
+  isolation: isolate;
+}
+.texture-grain::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 300px 300px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+}
+
+/* ── Section Spacing ───────────────────────────── */
+.section-pad {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+@media (max-width: 768px) {
+  .section-pad {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+
+/* ── Teatro Curtain Effect ─────────────────────── */
+.teatro-curtain {
+  position: relative;
+}
+.teatro-curtain::before,
+.teatro-curtain::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  pointer-events: none;
+  z-index: 2;
+}
+.teatro-curtain::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(74, 26, 107, 0.08), transparent);
+}
+.teatro-curtain::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(74, 26, 107, 0.08), transparent);
+}
+
+/* ── Card base ─────────────────────────────────── */
+.card {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 24px rgba(74, 26, 107, 0.08);
+  transition: box-shadow 0.3s var(--ease-smooth), transform 0.3s var(--ease-smooth);
+}
+.card:hover {
+  box-shadow: 0 12px 40px rgba(74, 26, 107, 0.16);
+  transform: translateY(-2px);
+}
+
+/* ── Animated Dots (Open indicator) ───────────── */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.6; transform: scale(1.35); }
+}
+.pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+/* ── Scroll Indicator ──────────────────────────── */
+@keyframes bounce-scroll {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(6px); }
+}
+.scroll-bounce {
+  animation: bounce-scroll 1.8s ease-in-out infinite;
+}
+
+/* ── Floating Gelato animation ─────────────────── */
+@keyframes float-gelato {
+  0%, 100% { transform: translateY(0px) rotate(-2deg); }
+  50%       { transform: translateY(-12px) rotate(2deg); }
+}
+.float-gelato {
+  animation: float-gelato 5s ease-in-out infinite;
+}
+
+/* ── Line-clamp utility ────────────────────────── */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── Mobile bottom padding for sticky bar ─────── */
+.has-mobile-bar {
+  padding-bottom: 4.5rem;
+}
+@media (min-width: 768px) {
+  .has-mobile-bar {
+    padding-bottom: 0;
+  }
+}
+
+/* ── Gallery lightbox body lock ───────────────── */
+body.lightbox-open {
+  overflow: hidden;
+}
+
+/* ── Underline animation for links ────────────── */
+.animated-link {
+  position: relative;
+  text-decoration: none;
+}
+.animated-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: currentColor;
+  transition: width 0.3s var(--ease-smooth);
+}
+.animated-link:hover::after {
+  width: 100%;
+}
+
+/* ── Italian flag accent stripe ───────────────── */
+.italian-stripe {
+  height: 3px;
+  background: linear-gradient(
+    to right,
+    #009246 0%,    /* Italian green */
+    #009246 33.3%,
+    #ffffff 33.3%,
+    #ffffff 66.6%,
+    #ce2b37 66.6%,
+    #ce2b37 100%
+  );
+}

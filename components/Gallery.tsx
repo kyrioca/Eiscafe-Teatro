@@ -217,7 +217,7 @@ export function Gallery() {
               initial={{ scale: 0.85 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0.85 }}
-              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
               className="relative max-w-2xl w-full rounded-3xl overflow-hidden"
               style={{ background: currentItem.gradient, height: "60vh" }}
               onClick={(e) => e.stopPropagation()}

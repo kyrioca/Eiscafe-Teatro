@@ -155,7 +155,7 @@ function MenuCard({ item, index }: { item: MenuItem; index: number }) {
     <motion.article
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.5, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
       className={`relative rounded-2xl overflow-hidden group transition-all duration-300 cursor-default ${
         item.featured ? "md:col-span-2" : ""
       }`}
@@ -268,7 +268,7 @@ export function Menu() {
                     layoutId="tab-bg"
                     className="absolute inset-0 rounded-xl"
                     style={{ background: "linear-gradient(135deg, #7B3FA0 0%, #4A1A6B 100%)" }}
-                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
                   />
                 )}
                 <span className="relative z-10 text-base" aria-hidden="true">{tab.icon}</span>

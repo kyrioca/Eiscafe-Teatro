@@ -121,7 +121,7 @@ export function Header() {
             initial={{ opacity: 0, x: "100%" }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
             className="fixed inset-0 z-40 flex flex-col pt-20"
             style={{ background: "linear-gradient(160deg, #FBF8FE 0%, #E8D5F0 100%)" }}
           >
@@ -135,7 +135,7 @@ export function Header() {
                   href={link.href}
                   initial={{ opacity: 0, x: 30 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.1 + i * 0.07, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ delay: 0.1 + i * 0.07, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
                   onClick={() => handleNavClick(link.href)}
                   className="text-3xl font-playfair font-bold py-3 border-b transition-colors hover:text-violet"
                   style={{ color: "#4A1A6B", borderColor: "#C4A8D8" }}

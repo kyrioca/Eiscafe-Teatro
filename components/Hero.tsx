@@ -64,7 +64,7 @@ export function Hero() {
                   transition={{
                     duration: 0.9,
                     delay: 0.25 + i * 0.15,
-                    ease: [0.22, 1, 0.36, 1],
+                    ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
                   }}
                   className="block"
                   style={{
@@ -167,7 +167,7 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
             className="hidden lg:flex items-center justify-center"
             aria-hidden="true"
           >
